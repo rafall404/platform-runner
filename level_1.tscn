@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyqywbvgbj4lf"]
+
+[ext_resource type="PackedScene" uid="uid://c6ep5c530a6l6" path="res://block.tscn" id="1_4h5f2"]
+[ext_resource type="Script" path="res://level_1.gd" id="1_d1hc5"]
+[ext_resource type="PackedScene" uid="uid://dh05wmr1antyn" path="res://steve.tscn" id="2_odwhj"]
+[ext_resource type="MeshLibrary" uid="uid://2ptni3vr1fbu" path="res://resources/world-blocks-v1.tres" id="4_huv6y"]
+[ext_resource type="PackedScene" uid="uid://cuf6e8tmqnbwj" path="res://coin.tscn" id="5_owdgw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0bmxo"]
+sky_top_color = Color(0.329859, 0.438094, 0.698075, 1)
+sky_horizon_color = Color(0.74512, 0.586717, 0.806982, 1)
+sky_curve = 0.0401915
+ground_bottom_color = Color(0.0189, 0.03, 0.020195, 1)
+ground_horizon_color = Color(0.710744, 0.621632, 0.714717, 1)
+ground_curve = 0.177532
+
+[sub_resource type="Sky" id="Sky_6ac0j"]
+sky_material = SubResource("ProceduralSkyMaterial_0bmxo")
+
+[sub_resource type="Environment" id="Environment_dycw1"]
+background_mode = 2
+sky = SubResource("Sky_6ac0j")
+ambient_light_color = Color(0.95, 1, 0.9925, 1)
+ambient_light_sky_contribution = 0.78
+ssr_enabled = true
+ssao_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kfho"]
+size = Vector3(9, 1, 11)
+
+[node name="Level1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223121, -0.0169954)
+script = ExtResource("1_d1hc5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.446104, 0.894981, 0, -0.894981, 0.446104, 0, 5.07077, 4.42613)
+shadow_enabled = true
+
+[node name="Blocks" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="Block1" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -1.36347, 3.50293, 1.67505)
+
+[node name="Block3" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.403124, 0.698232, 0.591577, -0.125773, -0.598024, 0.791548, 0.906461, -0.393497, -0.153259, -0.627549, 5.39915, 1.78031)
+
+[node name="Block4" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.403124, 0.698232, 0.591577, -0.125773, -0.598024, 0.791548, 0.906461, -0.393497, -0.153259, -0.735922, 7.23124, -0.105256)
+
+[node name="Steve" parent="." instance=ExtResource("2_odwhj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.84425, 0.487111, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dycw1")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("4_huv6y")
+collision_layer = 2
+collision_mask = 13
+data = {
+"cells": PackedInt32Array(-4, 65533, 0, -4, 65534, 0, -4, 65535, 0, -4, 0, 0, -4, 1, 0, -3, 65533, 0, -3, 65534, 0, -3, 65535, 0, -3, 0, 0, -3, 1, 0, -2, 65533, 0, -2, 65534, 0, -2, 65535, 0, -2, 0, 0, -2, 1, 0, -1, 65533, 0, -1, 65534, 0, -1, 65535, 0, -1, 0, 0, -1, 1, 0, -65536, 65533, 0, -65536, 65534, 0, -65536, 65535, 0, -65536, 0, 0, -65536, 1, 0, -65535, 65533, 0, -65535, 65534, 0, -65535, 65535, 0, -65535, 0, 0, -65535, 1, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 4, -65534, 1, 4, -65534, 0, 4, -65534, 65535, 4, -65534, 65534, 4, -65534, 65533, 4, -65535, 3, 1441796, -65536, 3, 1441796, -1, 3, 1441796, -2, 3, 1441796, -3, 3, 1441796, -4, 3, 1441796, -5, 2, 655364, -5, 1, 655364, -5, 65534, 655364, -5, 65533, 655364, -65534, 3, 6, -5, 3, 1441798, -65534, 65532, 1048582, -5, 65532, 655366, -4, 65532, 1048580, -1, 65532, 1048580, -65536, 65532, 1048580, -65535, 65532, 1048580, -2, 65532, 1441792, -3, 65532, 1441792, 65534, 65531, 1048578, 65533, 65531, 1048578, 65533, 65530, 1048577, 65534, 65530, 1048577, 65533, 65529, 1048576, 65534, 65529, 1048576, 65534, 65528, 1048576, 65533, 65528, 1048576, 65532, 65528, 1048576, 65532, 65529, 1048576, 65531, 65529, 1048576, 65531, 65528, 1048576, 65535, 65528, 1048576, 0, 65528, 1048576, 0, 65529, 1048576, 65535, 65529, 1048576, 65530, 65529, 1048576, 65530, 65528, 1048576, -5, 0, 1048576, -5, 65535, 1048576, -6, 65535, 1, -6, 0, 1, -7, 0, 2, -7, 65535, 2, -65544, 0, 0, -65544, 65535, 0, -131081, 0, 0, -131081, 65535, 0, -196618, 0, 0, -196618, 65535, 0, -262156, 65531, 1441792, -262156, 65532, 1441792, -262156, 65533, 1441792, -262156, 65534, 1441792, -262156, 65535, 1441792, -262156, 0, 1441792, -262156, 1, 1441792, -262156, 2, 1441792, -262156, 3, 1441792, -262156, 4, 1441792, -262156, 5, 1441792, -262156, 6, 1441792, -262156, 7, 1441792, -262155, 65531, 1441792, -262155, 65532, 1441792, -262155, 65533, 1441792, -262155, 65534, 1441792, -262155, 65535, 1441792, -262155, 0, 1441792, -262155, 1, 1441792, -262155, 2, 1441792, -262155, 3, 1441792, -262155, 4, 1441792, -262155, 5, 1441792, -262155, 6, 1441792, -262155, 7, 1441792, 131073, 65528, 1048576, 131073, 65529, 1048576, 131074, 65529, 1048576, 131074, 65528, 1048576, 65535, 0, 1048576, 65535, 65535, 1048576, 0, 65535, 1048576, 0, 0, 1048576, 0, 1, 1048576, 65535, 1, 1048576, 0, 65534, 1048576, 65535, 65534, 1048576, -262158, 18, 655366, -262158, 19, 655364, -262158, 20, 655364, -262158, 21, 1441798, -262157, 18, 1048580, -262157, 19, 1441792, -262157, 20, 1441792, -262157, 21, 1441796, -262156, 17, 1441792, -262156, 18, 1048576, -262156, 19, 1048576, -262156, 20, 1441792, -262156, 21, 1441796, -262155, 17, 1441792, -262155, 18, 1048576, -262155, 19, 1048576, -262155, 20, 1048576, -262155, 21, 1441796, -262154, 18, 1048580, -262154, 19, 1441792, -262154, 20, 1441792, -262154, 21, 1441796, -262153, 18, 1048582, -262153, 19, 4, -262153, 20, 4, -262153, 21, 6, -262158, 65522, 655366, -262158, 65523, 655364, -262158, 65524, 655364, -262158, 65525, 1441798, -262157, 65522, 1048580, -262157, 65523, 1048576, -262157, 65524, 1048576, -262157, 65525, 1441796, -262156, 65522, 1048580, -262156, 65523, 1441792, -262156, 65524, 1441792, -262156, 65525, 1441792, -262156, 65526, 1048576, -262155, 65522, 1048580, -262155, 65523, 1048576, -262155, 65524, 1441792, -262155, 65525, 1441792, -262155, 65526, 1048576, -262154, 65522, 1048580, -262154, 65523, 1048576, -262154, 65524, 1048576, -262154, 65525, 1441796, -262153, 65522, 1048582, -262153, 65523, 4, -262153, 65524, 4, -262153, 65525, 6, 131074, 65531, 1048579, 65536, 65531, 1048579, 131075, 65529, 1048576, 131075, 65528, 1048576)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="FallZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.5408, 0)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallZone"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -12.5555, -20.3177, 7.61148)
+top_level = true
+shape = SubResource("BoxShape3D_6kfho")
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, 6.06709)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, 4.06709)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, 2.06709)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, 0.06709)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, -1.93291)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44395, 0.595425, -3.93291)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.15605, 2.69542, -13.9329)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.15605, 2.69542, -13.9329)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.15605, 2.69542, -13.9329)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.15605, 2.69542, -13.9329)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.15605, 2.69542, -13.9329)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.1561, 2.69542, -13.9329)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 3.96709)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, -7.93291)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 5.96709)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 7.96709)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 9.96709)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 11.9671)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.9561, -7.50458, 13.9671)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.04395, 6.59543, -14.0329)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.04395, 6.59543, -14.0329)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94395, 5.59542, -8.93291)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94395, 3.49542, -8.93291)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("5_owdgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94395, 3.99542, 0.76709)
+
+[connection signal="body_entered" from="FallZone" to="Steve" method="_on_fall_zone_body_entered"]

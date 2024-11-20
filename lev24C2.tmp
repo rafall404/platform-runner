@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyqywbvgbj4lf"]
+
+[ext_resource type="PackedScene" uid="uid://c6ep5c530a6l6" path="res://block.tscn" id="1_4h5f2"]
+[ext_resource type="PackedScene" uid="uid://dh05wmr1antyn" path="res://steve.tscn" id="2_odwhj"]
+[ext_resource type="Texture2D" uid="uid://cid0ib6eycw3s" path="res://icon.svg" id="3_b60cp"]
+[ext_resource type="Script" path="res://icon.gd" id="4_afskm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdb7f"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1itj0"]
+size = Vector3(10, 0.5, 10)
+
+[node name="Level1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223121, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.860502, 0.509447, 0, -0.509447, 0.860502, 0.00105286, 3.53016, 6.72346)
+fov = 98.5791
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.481139, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_hdb7f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_1itj0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.446104, 0.894981, 0, -0.894981, 0.446104, 0, 5.07077, 4.42613)
+shadow_enabled = true
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block1" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -1.36347, 3.50293, 1.67505)
+
+[node name="Block3" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.403124, 0.698232, 0.591577, -0.125773, -0.598024, 0.791548, 0.906461, -0.393497, -0.153259, -0.627549, 5.39915, 1.78031)
+
+[node name="Block4" parent="Blocks" instance=ExtResource("1_4h5f2")]
+transform = Transform3D(0.403124, 0.698232, 0.591577, -0.125773, -0.598024, 0.791548, 0.906461, -0.393497, -0.153259, -0.735922, 7.23124, -0.105256)
+
+[node name="Steve" parent="." instance=ExtResource("2_odwhj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.970604, 2.14391)
+texture = ExtResource("3_b60cp")
+script = ExtResource("4_afskm")
