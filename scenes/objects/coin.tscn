@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuf6e8tmqnbwj"]
 
-[ext_resource type="Script" path="res://coin.gd" id="1_bpvgl"]
+[ext_resource type="Script" path="res://scripts/objects/coin.gd" id="1_bpvgl"]
 [ext_resource type="ArrayMesh" uid="uid://4swnp8llt28k" path="res://assets/models/coin_new.res" id="2_vhgxh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gxlth"]
