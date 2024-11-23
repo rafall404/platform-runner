@@ -34,6 +34,5 @@ func _on_restart_pressed() -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	print("This button not implemented yet!")
-	get_tree().quit()
-	pass # Replace with function body.
+	resume()
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
