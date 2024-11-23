@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyqywbvgbj4lf"]
+[gd_scene load_steps=11 format=3 uid="uid://dyqywbvgbj4lf"]
 
 [ext_resource type="PackedScene" uid="uid://c6ep5c530a6l6" path="res://block.tscn" id="1_4h5f2"]
 [ext_resource type="Script" path="res://level_1.gd" id="1_d1hc5"]
 [ext_resource type="PackedScene" uid="uid://dh05wmr1antyn" path="res://steve.tscn" id="2_odwhj"]
 [ext_resource type="MeshLibrary" uid="uid://2ptni3vr1fbu" path="res://resources/world-blocks-v1.tres" id="4_huv6y"]
 [ext_resource type="PackedScene" uid="uid://cuf6e8tmqnbwj" path="res://coin.tscn" id="5_owdgw"]
+[ext_resource type="PackedScene" uid="uid://cehmmflyln7y4" path="res://scenes/ui/pause_menu.tscn" id="6_thd0b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0bmxo"]
 sky_top_color = Color(0.329859, 0.438094, 0.698075, 1)
@@ -148,5 +149,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94395, 3.49542, -8.93291)
 
 [node name="Coin24" parent="Coins" instance=ExtResource("5_owdgw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94395, 3.99542, 0.76709)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_thd0b")]
 
 [connection signal="body_entered" from="FallZone" to="Steve" method="_on_fall_zone_body_entered"]
