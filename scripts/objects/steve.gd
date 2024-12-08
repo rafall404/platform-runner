@@ -68,4 +68,4 @@ func align_with_floor(floor_normal):
 
 func _on_fall_zone_body_entered(body: Node3D) -> void:
 	print("please don't kill yourself! :C . you lost "+str(Global.coins)+" coins")
-	get_tree().change_scene_to_file("res://level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")

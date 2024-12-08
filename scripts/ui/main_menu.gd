@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 
+
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
 
@@ -22,4 +23,3 @@ func _on_choose_level_pressed() -> void:
 
 func _on_exit_game_pressed() -> void:
 	get_tree().quit()
-	pass # Replace with function body.
